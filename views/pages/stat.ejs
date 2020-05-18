@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Statistik</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ 
+   <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+   <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+   <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</head>
+<body>
+   <div class="container-fluid">
+      <div id="cont_tabel" class="pt-2">
+         <table id="tabel" class="table table-striped table-responsive">
+            <thead class="thead-dark">
+               <tr>
+                  <th>Waktu</th>
+                  <th>Tanggal</th>
+               </tr>
+            </thead>
+            <tbody id="tblFooter">
+               
+            </tbody>
+         </table>
+
+      </div>
+   </div>
+</body>
+<script>
+   function loadTabel(){
+      console.log("load");
+      $("#tbody").html("");
+      $.ajax({
+         url:"http://localhost:3000/semuaData",
+         method:"GET",
+         success:function(data){
+            var cont = $("#tblFooter");
+            cont.empty();
+            data.forEach(e => {
+               cont.append(`<tr><td>${e.waktu}</td><td>${e.tanggal}</td></tr>`);
+            }); 
+         }
+      });
+   } 
+   $(document).ready(function () {
+      loadTabel();      
+   });
+   setInterval(() => {
+      console.log("baru");
+      loadTabel();
+   }, 5000);
+</script>
+</html>
