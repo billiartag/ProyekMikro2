@@ -1,7 +1,6 @@
 #include <DHT.h>
 #include <ArduinoHttpClient.h>
 #include <ArduinoMqttClient.h>
-#include <SPI.h>
 #include <ESP8266WiFi.h>
 #include <TimeLib.h>
 #include <WiFiUdp.h>
