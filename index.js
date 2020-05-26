@@ -60,7 +60,6 @@ app.get("/getEntry",async function(req,res){
    console.log("satu entry: "+results[0].hasil);
    res.send(results[0].hasil);
 });
-
 app.get("/semuaData",async function (req,res) {
    var tanggal = req.query.tgl;
    console.log(tanggal);
@@ -73,7 +72,6 @@ app.get("/semuaData",async function (req,res) {
    else{
       console.log(`select * from logging where substring(timestamp,1,10) = '${tanggal}' order by 1 desc limit 20`);
       results = await executeQuery(conn,`select * from logging where substring(timestamp,1,10) = '${tanggal}' order by 1 desc limit 20`);
-
    }
    if(results==""){
       res.status(200).send("");
@@ -91,5 +89,5 @@ app.get("/showData",function(req,res){
    res.render("pages/stat");
 })
 app.get("/",function(req,res){
-   res.send("HALOOO");
+   res.redirect(302, "/showData");
 })
